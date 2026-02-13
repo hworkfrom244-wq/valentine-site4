@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Valentine Grand Gift Entry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    text-align:center;
+}
+
+.container{
+    background:white;
+    margin:30px 15px;
+    padding:20px;
+    border-radius:20px;
+}
+
+img{
+    width:100%;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:28px;
+}
+
+input{
+    width:90%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    margin:10px 0;
+}
+
+button{
+    width:90%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    background:#ff0066;
+    color:white;
+}
+
+button:hover{
+    background:#cc0052;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="valentine.jpg">
+
+<h1>🎁 Valentine Grand Gift Entry 🎁</h1>
+
+<p>Enter your name to generate your unique entry code.</p>
+
+<input type="text" id="name" placeholder="Enter Your Name">
+
+<button onclick="generateCode()">Generate Unique Code</button>
+
+<button onclick="openForm()">Open Google Form</button>
+
+<p id="code"></p>
+
+</div>
+
+<script>
+function generateCode(){
+    var name = document.getElementById("name").value;
+    if(name==""){
+        alert("Please enter your name");
+        return;
+    }
+    var random = Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("code").innerHTML =
+    "Your Entry Code: " + name.substring(0,3).toUpperCase() + random;
+}
+
+function openForm(){
+    window.open("YOUR_GOOGLE_FORM_LINK_HERE");
+}
+</script>
+
+</body>
+</html>
