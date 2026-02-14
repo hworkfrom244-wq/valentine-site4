@@ -1,64 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Valentine Grand Gift Entry</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Grand Gift Offer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 body{
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg,#ff4e8a,#ff0066);
+    color:white;
     text-align:center;
 }
-
+.hero img{
+    width:100%;
+    display:block;
+}
 .container{
+    padding:25px;
+}
+.card{
     background:white;
-    margin:30px 15px;
+    color:black;
     padding:20px;
     border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    margin-top:-40px;
 }
-
-img{
-    width:100%;
-    border-radius:20px;
-    margin-bottom:20px;
-}
-
-h1{
-    font-size:28px;
-}
-
 input{
     width:90%;
     padding:12px;
-    border-radius:10px;
+    border-radius:8px;
     border:1px solid #ccc;
-    margin:10px 0;
+    margin-top:10px;
 }
-
 button{
-    width:90%;
-    padding:12px;
-    margin:10px 0;
+    padding:12px 25px;
     border:none;
-    border-radius:25px;
-    font-size:16px;
+    border-radius:30px;
     background:#ff0066;
     color:white;
+    font-size:16px;
+    margin-top:15px;
+    cursor:pointer;
 }
-
 button:hover{
     background:#cc0052;
+}
+#codeBox{
+    margin-top:15px;
+    font-weight:bold;
+    font-size:18px;
+    color:#ff0066;
+}
+#thanks{
+    display:none;
+    margin-top:20px;
+    font-size:18px;
+    color:green;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="hero">
+    <img src="valentinepng.png" alt="Valentine Offer">
+</div>
 
-<img src="valentinepng.png">
+<div class="container">
+<div class="card">
 
 <h1>🎁 Valentine Grand Gift Entry 🎁</h1>
 
@@ -66,31 +80,65 @@ button:hover{
 
 <input type="text" id="name" placeholder="Enter Your Name">
 
+<br>
 <button onclick="generateCode()">Generate Unique Code</button>
 
-<button onclick="openForm()">Open Google Form</button>
+<div id="codeBox"></div>
 
-<p id="code"></p>
+<button id="copyBtn" onclick="copyCode()" style="display:none;">Copy Code</button>
 
+<br>
+
+<button onclick="shareWhatsApp()" id="waBtn" style="display:none;">Share on WhatsApp</button>
+
+<br>
+
+<button onclick="goToForm()">Open Google Form</button>
+
+<div id="thanks">
+✅ Thank You! Your participation is recorded.
+</div>
+
+</div>
 </div>
 
 <script>
+
+let generatedCode = "";
+let formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfX0ej2Nq4VlONctK7fpyl19__rNHEv-Ml-JVwnboR5u3Tjew/viewform";
+
 function generateCode(){
-    var name = document.getElementById("name").value;
+    let name = document.getElementById("name").value;
     if(name==""){
         alert("Please enter your name");
         return;
     }
-    var random = Math.floor(100000 + Math.random() * 900000);
-    document.getElementById("code").innerHTML =
-    "Your Entry Code: " + name.substring(0,3).toUpperCase() + random;
+
+    generatedCode = "VAL" + name.substring(0,3).toUpperCase() + Math.floor(1000 + Math.random()*9000);
+
+    document.getElementById("codeBox").innerHTML = "Your Unique Code: " + generatedCode;
+    document.getElementById("copyBtn").style.display="inline-block";
+    document.getElementById("waBtn").style.display="inline-block";
 }
 
-function openForm(){
-    window.op<a href="https://docs.google.com/forms/d/e/1FAIpQLSfX0ej2Nq4VlONctK7fpyl19__rNHEv-Ml-JVwnboR5u3Tjew/viewform" target="_blank">
-<button>Open Google Form</button>
-</a>
+function copyCode(){
+    navigator.clipboard.writeText(generatedCode);
+    alert("Code Copied Successfully!");
 }
+
+function shareWhatsApp(){
+    let message = "🎁 Valentine Gift Offer 🎁\n\nUse my code: " + generatedCode + 
+    "\n\nFill form here:\n" + formLink;
+
+    let url = "https://wa.me/?text=" + encodeURIComponent(message);
+    window.open(url,"_blank");
+}
+
+function goToForm(){
+    window.open(formLink,"_blank");
+    document.getElementById("thanks").style.display="block";
+}
+
 </script>
 
 </body>
