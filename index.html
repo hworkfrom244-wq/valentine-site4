@@ -1,144 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Grand Gift Offer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Live Subscribe Challenge</title>
 
 <style>
 body{
     margin:0;
-    font-family:'Poppins', sans-serif;
-    background: linear-gradient(135deg,#ff4e8a,#ff0066);
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#000000,#1a1a1a,#330000);
     color:white;
     text-align:center;
 }
-.hero img{
-    width:100%;
-    display:block;
-}
+
 .container{
-    padding:25px;
+    margin-top:100px;
 }
-.card{
-    background:white;
-    color:black;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    margin-top:-40px;
-}
-input{
-    width:90%;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    margin-top:10px;
-}
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    background:#ff0066;
-    color:white;
-    font-size:16px;
-    margin-top:15px;
-    cursor:pointer;
-}
-button:hover{
-    background:#cc0052;
-}
-#codeBox{
-    margin-top:15px;
+
+.live{
+    color:red;
+    font-size:45px;
     font-weight:bold;
-    font-size:18px;
-    color:#ff0066;
+    animation: blink 1s infinite;
 }
-#thanks{
-    display:none;
-    margin-top:20px;
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:0.4;}
+    100%{opacity:1;}
+}
+
+.goal{
+    font-size:35px;
+    margin:30px 0;
+}
+
+.counter{
+    font-size:60px;
+    font-weight:bold;
+    color:yellow;
+}
+
+.subscribe{
+    font-size:28px;
+    margin-top:30px;
+    color:#00ffcc;
+}
+
+.namebox{
+    margin-top:40px;
+}
+
+input{
+    padding:10px;
     font-size:18px;
-    color:green;
+    border-radius:8px;
+    border:none;
+}
+
+button{
+    padding:10px 20px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:red;
+    color:white;
+}
+
+.showname{
+    margin-top:30px;
+    font-size:35px;
+    color:#00ff00;
+    font-weight:bold;
+}
+
+.footer{
+    position:fixed;
+    bottom:15px;
+    width:100%;
+    font-size:18px;
+    color:#aaaaaa;
 }
 </style>
 </head>
 
 <body>
 
-<div class="hero">
-    <img src="valentinepng.png" alt="Valentine Offer">
-</div>
-
 <div class="container">
-<div class="card">
 
-<h1>🎁 Valentine Grand Gift Entry 🎁</h1>
+<div class="live">🔴 LIVE NOW</div>
 
-<p>Enter your name to generate your unique entry code.</p>
+<div class="goal">🎯 Goal: 100 Subscribers</div>
 
-<input type="text" id="name" placeholder="Enter Your Name">
+<div class="counter" id="counter">50 / 100</div>
 
-<br>
-<button onclick="generateCode()">Generate Unique Code</button>
-
-<div id="codeBox"></div>
-
-<button id="copyBtn" onclick="copyCode()" style="display:none;">Copy Code</button>
-
-<br>
-
-<button onclick="shareWhatsApp()" id="waBtn" style="display:none;">Share on WhatsApp</button>
-
-<br>
-
-<button onclick="goToForm()">Open Google Form</button>
-
-<div id="thanks">
-✅ Thank You! Your participation is recorded.
+<div class="subscribe">
+❤️ Subscribe Fast <br>
+💬 Comment "Done"
 </div>
 
+<div class="namebox">
+<input type="text" id="username" placeholder="Enter Subscriber Name">
+<button onclick="showName()">Show Name</button>
 </div>
+
+<div class="showname" id="displayName"></div>
+
+</div>
+
+<div class="footer">
+Shubham Gaikwad Creations 🔥
 </div>
 
 <script>
+let count = 50;
+let goal = 100;
 
-let generatedCode = "";
-let formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfX0ej2Nq4VlONctK7fpyl19__rNHEv-Ml-JVwnboR5u3Tjew/viewform";
-
-function generateCode(){
-    let name = document.getElementById("name").value;
-    if(name==""){
-        alert("Please enter your name");
-        return;
+setInterval(function(){
+    if(count < goal){
+        count++;
+        document.getElementById("counter").innerHTML = count + " / " + goal;
     }
+}, 3000);
 
-    generatedCode = "VAL" + name.substring(0,3).toUpperCase() + Math.floor(1000 + Math.random()*9000);
-
-    document.getElementById("codeBox").innerHTML = "Your Unique Code: " + generatedCode;
-    document.getElementById("copyBtn").style.display="inline-block";
-    document.getElementById("waBtn").style.display="inline-block";
+function showName(){
+    let name = document.getElementById("username").value;
+    document.getElementById("displayName").innerHTML = "🎉 Thanks " + name + " for Subscribing!";
 }
-
-function copyCode(){
-    navigator.clipboard.writeText(generatedCode);
-    alert("Code Copied Successfully!");
-}
-
-function shareWhatsApp(){
-    let message = "🎁 Valentine Gift Offer 🎁\n\nUse my code: " + generatedCode + 
-    "\n\nFill form here:\n" + formLink;
-
-    let url = "https://wa.me/?text=" + encodeURIComponent(message);
-    window.open(url,"_blank");
-}
-
-function goToForm(){
-    window.open(formLink,"_blank");
-    document.getElementById("thanks").style.display="block";
-}
-
 </script>
 
 </body>
