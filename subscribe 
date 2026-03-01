@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Subscribe Boost</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background: linear-gradient(135deg,#000000,#1a1a1a,#333333);
+    color:white;
+}
+
+.header{
+    padding:30px;
+    font-size:28px;
+    font-weight:bold;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow: 0 0 10px red; }
+    to{ text-shadow: 0 0 20px yellow; }
+}
+
+.counter{
+    font-size:40px;
+    margin:20px;
+    color:#00ffcc;
+}
+
+.box{
+    background:#111;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 15px #00ffcc;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:#00ffcc;
+    color:black;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#00ffaa;
+}
+
+.qr{
+    width:200px;
+    margin-top:15px;
+}
+
+.footer{
+    margin-top:30px;
+    font-size:14px;
+    color:gray;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🚀 LIVE SUBSCRIBE BOOST 🚀<br>
+Shubham Gaikwad Creations
+</div>
+
+<div class="counter">
+Live Subscribers: <span id="count">1000</span>
+</div>
+
+<div class="box">
+<h2>📢 Subscribe वाढवायचे आहेत?</h2>
+<p>👇 तुमचा Channel Link खाली Comment करा 👇</p>
+<button onclick="alert('Channel Link Comment करा!')">Submit Channel Link</button>
+</div>
+
+<div class="box">
+<h2>💳 Payment Section</h2>
+<p>QR Code Scan करा आणि Payment Complete करा</p>
+
+<!-- इथे तुझा QR code image file नाव टाक -->
+<img src="qr.png" class="qr" alt="QR Code">
+
+<button onclick="alert('Payment Screenshot WhatsApp वर पाठवा')">
+Payment Done
+</button>
+</div>
+
+<div class="box">
+<h2>📞 Contact</h2>
+<p>WhatsApp: +91XXXXXXXXXX</p>
+<p>Location: Maharashtra, India</p>
+</div>
+
+<div class="footer">
+⚠ Promotional Support Service | Monetization Not Guaranteed
+</div>
+
+<script>
+let count = 1000;
+setInterval(function(){
+    count += Math.floor(Math.random()*5);
+    document.getElementById("count").innerText = count;
+},2000);
+</script>
+
+</body>
+</html>
